@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/main.css")
+    title Filter Results
+  body
+    .navbar 
+      ul 
+        li: a(href="/") Home
+        if !user
+          li: a(href="/login") Login
+          li: a(href="/register") Register
+        else
+          li: a(href="/logout") Logout
+
+    h1 Filter Results
+    if images && images.length
+      .results
+        each img in images
+          .car-card
+            img(src=img.Image_url, alt=`${img.Brand} ${img.Model}`, width="200")
+            h3 #{img.Brand} #{img.Model}
+            p Fuel: #{img.Fuel_type}
+            p Gear: #{img.Gear_type}
+            p Price: #{img.Price} ₺
+            p Location: #{img.Location}
+    else
+      p No results found.
+
+    if user && user.roleId === 3 && myCars.length
+      .sellerbar
+        h3 Your Cars
+        ul
+          each car in myCars
+            li
+              img(src=car.Image_url, alt=car.Brand, width="60")
+              span #{car.Brand} #{car.Model}

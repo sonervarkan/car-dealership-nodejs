@@ -1,0 +1,48 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/navbar.css")
+        link(rel="stylesheet", href="/css/form.css")
+        title Register Page
+    body 
+
+        .navbar 
+            ul 
+                li
+                    a(href="/") Home
+                li
+                    a(href="#") About 
+                li
+                    a(href="#") Contact
+                li
+                    a(href="/login") Login
+                li
+                    a(href="#") Logout
+
+        form(action="register" method="POST")
+
+            label(for="Name") Name 
+            input(type="text" id="Name" name="Name")
+
+            label(for="Surname") Surname 
+            input(type="text" id="Surname" name="Surname")
+
+            label(for="Email") Email 
+            input(type="text" id="Email" name="Email")
+
+            label(for="Password") Password 
+            input(type="text" id="Password" name="Password")
+
+            label(for="Phone") Phone 
+            input(type="text" id="Phone" name="Phone")
+
+            select(name="RoleId")
+                option(value="") Role
+                each role in roles
+                    option(value=role.Id)= role.Role_type
+            
+            button(type="submit") Register
+   
+

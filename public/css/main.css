@@ -1,0 +1,100 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #222;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 15px;
+  align-items: center;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.welcome {
+  margin-left: auto;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  gap: 10px;
+  margin: 20px;
+}
+
+
+.slider {
+  width: 50%;
+  height: 50%;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #000;
+}
+
+.slides {
+  display: flex;
+}
+
+.slide {
+  flex: 0 0 100%;
+  color: #fff;
+  text-align: center;
+}
+
+.slide img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.info {
+  padding: 5px;
+  background: #fff;
+  color: #000;
+}
+
+
+.sellerbar {
+  width: 25%;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.sellerbar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sellerbar li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  gap: 5px;
+}
+
+.sellerbar li img {
+  width: 40px;
+  height: 30px;
+  object-fit: cover;
+}
+
+.sellerbar li span {
+  font-size: 0.85rem;
+}

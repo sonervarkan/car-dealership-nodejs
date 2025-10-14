@@ -1,0 +1,36 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/navbar.css")
+        link(rel="stylesheet", href="/css/form.css")
+        title Login Page
+    body 
+
+        .navbar 
+            ul 
+                li
+                    a(href="/") Home
+                li
+                    a(href="#") About 
+                li
+                    a(href="#") Contact
+                li
+                    a(href="/register") Register
+        
+        if error
+            p(style="color:red") #{error} 
+
+        form(action="/login" method="POST") 
+
+            label(for="Name") Name 
+            input(type="text" id="Name" name="Name")
+
+            label(for="Surname") Surname 
+            input(type="text" id="Surname" name="Surname")
+
+            label(for="Password") Password 
+            input(type="text" id="Password" name="Password")
+
+            button(type="submit") Login  

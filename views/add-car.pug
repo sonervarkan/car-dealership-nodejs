@@ -1,0 +1,65 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/navbar.css")
+        link(rel="stylesheet", href="/css/form.css")
+        title Add Car
+    body 
+
+        .navbar 
+            ul 
+                li
+                    a(href="/") Home
+                li
+                    a(href="#") About 
+                li
+                    a(href="#") Contact
+
+        form(action="add-car" method="POST" enctype="multipart/form-data")
+
+
+            label(for="Brand") Brand
+            input(type="text" id="Brand" name="Brand") 
+
+            label(for="Model") Model
+            input(type="text" id="Model" name="Model")
+
+            label(for="Year") Year
+            input(type="text" id="Year" name="Year")
+
+            label(for="Price") Price
+            input(type="text" id="Price" name="Price")
+
+            label(for="Fuel_type") Fuel Type
+            select(name="Fuel_type" id="Fuel_type" required)
+                option(value="") -- Select --
+                option(value="Petrol") Petrol
+                option(value="Diesel") Diesel
+                option(value="Electric") Electric
+                option(value="Hybrid") Hybrid
+
+            label(for="Gear_type") Gear Type
+            select(name="Gear_type" id="Gear_type" required)
+                option(value="") -- Select --
+                option(value="Manuel") Manuel
+                option(value="Automatic") Automatic
+
+
+            label(for="Mileage") Mileage
+            input(type="text" id="Mileage" name="Mileage")
+
+            label(for="Color") Color
+            input(type="text" id="Color" name="Color")
+
+            label(for="Description") Description
+            input(type="text" id="Description" name="Description")
+
+            label(for="Location") Location
+            input(type="text" id="Location" name="Location")
+
+            label(for="images") Car Images (max 4 images):
+            input(type="file" name="images" multiple accept="image/*")
+
+            button(type="submit" value="Add Car") Add Car

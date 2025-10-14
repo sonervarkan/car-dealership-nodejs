@@ -1,0 +1,95 @@
+
+
+.smart-filter {
+  background: rgb(204, 214, 217);
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  width: 100%;
+}
+
+.smart-filter ul {
+  list-style: none;
+  margin: 0; 
+  padding: 0;
+  display: flex; 
+  flex-direction: column;
+}
+
+
+.menu-item {
+  position: relative;
+  margin-left: 20px; 
+}
+
+.menu-item > a {
+  text-decoration: none;
+  color: #51209a;
+  font-weight: bold;
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+
+.submenu {
+  display: none; 
+  position: absolute;
+  background: rgb(204, 214, 217);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  z-index: 50;
+  min-width: 180px; 
+  width: max-content; 
+}
+
+.submenu ul {
+  list-style: none;
+  padding: 5px;
+  margin: 0;
+}
+
+.submenu li {
+  position: relative;
+  padding: 8px 15px;
+}
+
+.submenu li:hover {
+  background-color: #f2f2f2;
+}
+
+
+.submenu li::after {
+  content: "›"; 
+  position: absolute;
+  right: 10px;
+  color: #999;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+
+.year-item::after {
+  content: none;
+}
+
+
+.brand-menu {
+  top: 100%;
+  left: 0; 
+}
+
+
+.submenu .submenu {
+  top: 0;      
+  left: 100%;  
+}
+
+
+
+.menu-item:hover > .submenu.brand-menu {
+  display: block;
+}
+
+
+.submenu li:hover > .submenu {
+  display: block;
+}

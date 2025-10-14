@@ -1,0 +1,154 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/main.css")
+    link(rel="stylesheet", href="/css/filter.css")
+    link(rel="stylesheet", href="/css/smart-filter.css")
+    title Home Page
+  body
+    .navbar 
+      ul 
+        li: img(src="/logo/logo.png", alt="Firma Logosu" style="width: 30px; height: 30px;")
+        li: a(href="#") About 
+        li: a(href="#") Contact
+        li: a(href="/add-car") Add Car
+        if !user
+          li: a(href="/login") Login
+          li: a(href="/register") Register
+        else
+          li: a(href="/logout") Logout
+      if user
+        .welcome
+          p Hoş geldiniz #{user.firstname} #{user.lastname}!
+      else
+        .welcome
+          p Hoş geldiniz
+    .smart-filter
+      ul
+        li.menu-item
+          a(href="#") Akıllı Filtre ▾
+          .submenu.brand-menu
+            #brandList
+              // Brand listesi AJAX ile yüklenecek
+
+    .container
+      .filter
+        h2 What do you want to search?
+        form(action="/filter" method="GET")
+          .filter-group
+            label(for="Brand") Brand:
+            select(name="Brand" id="Brand")
+              option(value="") ----Select----
+              each img in images
+                option(value=img.Brand)= img.Brand
+
+
+            label(for="Model") Model:
+            select(name="Model" id="Model")
+              option(value="") ----Select----
+              each car in cars
+                option(value=car.Model) #{car.Model}
+            
+            label(for="Fuel_type") Fuel Type:
+            select(name="Fuel_type" id="Fuel_type")
+              option(value="") All
+              option(value="Petrol") Petrol
+              option(value="Diesel") Diesel
+              option(value="Electric") Electric
+              option(value="Hybrid") Hybrid
+
+            label(for="Gear_type") Gear Type:
+            select(name="Gear_type" id="Gear_type")
+              option(value="") All
+              option(value="Manuel") Manuel
+              option(value="Automatic") Automatic
+
+            label(for="minPrice") Price Range:
+            input(type="number" id="minPrice" name="minPrice" placeholder="Min ₺")
+            input(type="number" id="maxPrice" name="maxPrice" placeholder="Max ₺")
+
+            label(for="Location") Location:
+            input(type="text" id="Location" name="Location" placeholder="Forexample: İstanbul")
+
+            button(type="submit") Filter
+
+
+      if images && images.length
+        .slider
+          .slides       
+            each img in images
+              .slide
+                img(src=img.Image_url, alt=`${img.Brand} ${img.Model}`)
+                .info
+                  h2 #{img.Brand} #{img.Model}
+                  p.year Year: #{img.Year}
+                  p.color Color: #{img.Color}
+                  p.price Price: #{img.Price} ₺
+      else
+        p.no-data Henüz araç eklenmemiş.
+
+      
+      if user && user.roleId === 3 && myCars.length
+        .sellerbar
+          h3 Eklediğiniz Araçlar
+          ul
+            each car in myCars
+              li
+                img(src=car.Image_url, alt=car.Brand, width="60")
+                span #{car.Brand} #{car.Model}
+
+    script(src="https://code.jquery.com/jquery-3.7.1.min.js")
+    script(src="/scripts/smart-filter.js")
+    script.
+        $(document).ready(function(){
+            let currentIndex = 0;
+            const slides = $('.slide');
+            const totalSlides = slides.length;
+
+            // SLIDER
+            function nextSlide(){
+                if(currentIndex < totalSlides - 1){
+                    currentIndex++;
+                } else {
+                    currentIndex = 0;
+                }
+                $('.slides').css('transform', 'translateX(' + (-100 * currentIndex) + '%)');
+            }
+
+            if(totalSlides > 0){
+                setInterval(nextSlide, 2000);
+            }
+
+            
+            $('#Brand').on('change', function() {
+                const selectedBrand = $(this).val();
+                const $modelSelect = $('#Model');
+
+                $modelSelect.empty(); 
+                $modelSelect.append('<option value="">Loading...</option>');
+
+                if (selectedBrand) {
+                    $.ajax({
+                        url: `/models/${selectedBrand}`,
+                        method: "GET",
+                        success: function(models) {
+                            $modelSelect.empty();
+                            $modelSelect.append('<option value="">----Select----</option>');
+                            models.forEach(model => {
+                                $modelSelect.append(`<option value="${model}">${model}</option>`);
+                            });
+                        },
+                        error: function() {
+                            $modelSelect.empty();
+                            $modelSelect.append('<option value="">Error loading models</option>');
+                        }
+                    });
+                } else {
+                    $modelSelect.empty();
+                    $modelSelect.append('<option value="">----Select----</option>');
+                }
+            });
+        });
+
