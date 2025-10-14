@@ -4,7 +4,7 @@ const db=require("../utility/database");
 const path = require("path");
 
 /*
-// For upload to multimedia in kodding folder
+// Uploading multimedia to coding folder
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 */
 
-// For upload to multimedia in Cloudinary
+// Uploading multimedia to cloudinary.com
 const multer = require("multer");
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const cloudinary = require("../utility/cloudinary");
